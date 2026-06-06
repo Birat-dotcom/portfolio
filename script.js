@@ -1,171 +1,144 @@
-function showSection(id) {
-    const sections = document.querySelectorAll(".section");
-
-    sections.forEach(sec => {
-        sec.style.display = "none";
-    });
-
-    const target = document.getElementById(id);
-
-    if (target) {
-        target.style.display = "block";
-    }
-}
-document.addEventListener("DOMContentLoaded", function () {
-
-    // NAVIGATION
-    const links = document.querySelectorAll("nav a");
-
-    links.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const section = this.dataset.section;
-            if (section) {
-                showSection(section);
-            }
-        });
-    });
-
-    // HERO BUTTON
-    const heroBtn = document.getElementById("heroOrderBtn");
-    if (heroBtn) {
-        heroBtn.addEventListener("click", function () {
-            showSection("menu");
-        });
-    }
-
-    // CART BUTTONS (IMPORTANT FIX)
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-        btn.addEventListener("click", function () {
-            const price = Number(this.dataset.price);
-            addToCart(price);
-        });
-    });
-
-    // OTHER BUTTONS (SAFE BINDING)
-    document.getElementById("loginBtn")?.addEventListener("click", login);
-    document.getElementById("sendBtn")?.addEventListener("click", sendMessage);
-    document.getElementById("bookBtn")?.addEventListener("click", bookTable);
-    document.getElementById("placeOrderBtn")?.addEventListener("click", placeOrder);
-
-    // SHOW HOME ON LOAD (IMPORTANT FIX)
-    showSection("home");
+// Run instantly when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartUI();
 });
-// Hero button
-let heroBtn = document.getElementById("heroOrderBtn");
-if (heroBtn) {
-    heroBtn.onclick = function () {
-        showSection("menu");
-    };
+
+// 📦 STORAGE HELPERS (Keeps your cart data safe when changing pages)
+function getCart() {
+    let cart = localStorage.getItem("mealMatrixCart");
+    // If empty or corrupted, return a clean starting structure
+    if (!cart || cart === "undefined") {
+        return { items: [], total: 0 };
+    }
+    return JSON.parse(cart);
 }
-// Add to cart buttons
-let cartButtons = document.querySelectorAll(".add-to-cart");
-cartButtons.forEach(function (btn) {
-    btn.onclick = function () {
-        let price = Number(btn.getAttribute("data-price"));
-        addToCart(price);
-    };
-});
-// Other buttons
-let loginBtn = document.getElementById("loginBtn");
-if (loginBtn) loginBtn.onclick = login;
 
-let sendBtn = document.getElementById("sendBtn");
-if (sendBtn) sendBtn.onclick = sendMessage;
+function saveCart(cartData) {
+    localStorage.setItem("mealMatrixCart", JSON.stringify(cartData));
+}
 
-let bookBtn = document.getElementById("bookBtn");
-if (bookBtn) bookBtn.onclick = bookTable;
+// 🛒 CART ACTIONS
+function addToCart(itemName, price) {
+    let cart = getCart();
 
-let placeOrderBtn = document.getElementById("placeOrderBtn");
-if (placeOrderBtn) placeOrderBtn.onclick = placeOrder;
-});
-// Show/Hide sections
-function showSection(id) {
-    let sections = document.querySelectorAll(".section, .page");
+    // Add item and update math
+    cart.items.push({ name: itemName, price: Number(price) });
+    cart.total = Number(cart.total) + Number(price);
 
-    sections.forEach(function (sec) {
-        sec.classList.add("hidden");
-        sec.classList.remove("active");
-    });
+    saveCart(cart);
+    updateCartUI();
 
-    let target = document.getElementById(id);
-    if (target) {
-        target.classList.remove("hidden");
-        target.classList.add("active");
+    alert(`${itemName} added to cart!`);
+}
+
+function updateCartUI() {
+    let cart = getCart();
+
+    // 1. Update Home Page Running Total (index.html)
+    const homeTotal = document.getElementById("orderTotal");
+    if (homeTotal) {
+        homeTotal.innerText = `Running Total: Rs. ${cart.total}`;
+    }
+
+    // 2. Update Checkout Page Elements (contact.html)
+    const cartList = document.getElementById("orderList");
+    const checkoutTotal = document.getElementById("total");
+
+    if (cartList && checkoutTotal) {
+        cartList.innerHTML = ""; // Clear list
+
+        if (cart.items.length === 0) {
+            cartList.innerHTML = "<li>Your cart is empty.</li>";
+        } else {
+            cart.items.forEach(item => {
+                let li = document.createElement("li");
+                li.innerHTML = `<span>${item.name}</span> <span>Rs. ${item.price}</span>`;
+                cartList.appendChild(li);
+            });
+        }
+        checkoutTotal.innerText = `Total: Rs. ${cart.total}`;
     }
 }
-// LOGIN
-function login() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
 
-    if (!email || !password) {
-        alert("Fill all fields!");
+function placeOrder() {
+    let cart = getCart();
+
+    // Validation: Can't buy nothing!
+    if (cart.items.length === 0) {
+        alert("Your cart is empty! Please go to the Home page to add food.");
         return;
     }
 
-    if (!email.includes("@")) {
-        alert("Invalid email!");
-        return;
-    }
-
-    if (password.length < 4) {
-        alert("Password too short!");
-        return;
-    }
-
-    document.getElementById("welcome").innerText = "Welcome " + email;
-    alert("Login successful!");
+    alert(`Order placed successfully! Your total is Rs. ${cart.total}.`);
+    localStorage.removeItem("mealMatrixCart"); // Clear cart memory
+    updateCartUI();
 }
-// CONTACT FORM
-function sendMessage() {
-    let name = document.getElementById("cname").value;
-    let email = document.getElementById("cemail").value;
-    let msg = document.getElementById("cmsg").value;
 
-    if (!name || !email || !msg) {
-        alert("Fill all fields!");
-        return;
-    }
+// 📋 FORM VALIDATIONS
 
-    if (!email.includes("@")) {
-        alert("Invalid email!");
-        return;
-    }
-
-    if (msg.length < 10) {
-        alert("Message too short!");
-        return;
-    }
-
-    alert("Message sent!");
-}
-// BOOK TABLE
 function bookTable() {
-    let name = document.getElementById("rname").value;
-    let date = document.getElementById("rdate").value;
-    let time = document.getElementById("rtime").value;
+    const name = document.getElementById("rname").value.trim();
+    const date = document.getElementById("rdate").value;
+    const time = document.getElementById("rtime").value;
+
+    // Validation: Check if any fields are completely blank
     if (!name || !date || !time) {
-        alert("Fill all details!");
+        alert("Error: Please fill out your Name, Date, and Time to book a table.");
         return;
     }
-    let today = new Date();
-    let selected = new Date(date);
-    if (selected < today.setHours(0, 0, 0, 0)) {
-        alert("Select future date!");
-        return;
-    }
-    alert("Table booked!");
+
+    alert(`Success! Table reserved for ${name} on ${date} at ${time}.`);
+
+    // Clear fields after success
+    document.getElementById("rname").value = "";
+    document.getElementById("rdate").value = "";
+    document.getElementById("rtime").value = "";
 }
-// CART
-let total = 0;
 
-function addToCart(price) {
-    total += price;
+function sendMessage() {
+    const name = document.getElementById("cname").value.trim();
+    const email = document.getElementById("cemail").value.trim();
+    const msg = document.getElementById("cmsg").value.trim();
 
-    document.getElementById("orderTotal").innerText = "Total: Rs." + total;
-    document.getElementById("total").innerText = "Total: Rs." + total;
+    // Validation 1: Check for empty text fields
+    if (!name || !email || !msg) {
+        alert("Error: All contact fields (Name, Email, Message) are required.");
+        return;
+    }
 
-    alert("Added to cart!");
+    // Validation 2: Basic email pattern check (@ and .)
+    if (!email.includes("@") || !email.includes(".")) {
+        alert("Error: Please enter a valid email address.");
+        return;
+    }
+
+    alert(`Thank you, ${name}! Your message has been received.`);
+
+    // Clear inputs
+    document.getElementById("cname").value = "";
+    document.getElementById("cemail").value = "";
+    document.getElementById("cmsg").value = "";
+}
+function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const welcomeEl = document.getElementById("welcome");
+
+    // Validation 1: Ensure fields aren't completely blank
+    if (!email || !password) {
+        alert("Error: Both email and password fields are required.");
+        return;
+    }
+
+    // Validation 2: Ensure the email contains an '@' and a '.' symbol
+    if (!email.includes("@") || !email.includes(".")) {
+        alert("Error: Please enter a valid email address (e.g., name@example.com).");
+        return;
+    }
+
+    // If both checks pass:
+    if (welcomeEl) {
+        welcomeEl.innerText = `Welcome Back, ${email}!`;
+    }
+    alert("Login successful!");
 }
