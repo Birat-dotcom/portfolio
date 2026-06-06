@@ -5,12 +5,15 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+
 body {
-  background: url("wPrmHup34MZE2OR5D2X9_d3a7zD0C3liidhuwJaNfr-5j3r8Jd_om4NrS4V_U2LQ17mN2wDYGvGMtqUM8RpB0gzk1M5AlipfRbsH8Hmee8A8aEa-xwt737G_hM2SuFKraRWXKouCSP-aguKT5ZNBgHUZEbH0hcHXqAaZo2ist7S7cht-cwS52nIgEFi0hghC.jpg") center/cover fixed;
+  background: url("wPrmHup34MZE2OR5D2X9_d3a7zD0C3liidhuwJaNfr-5j3r8Jd_om4NrS4V_U2LQ17mN2wDYGvGMtqUM8RpB0gzk1M5AlipfRbsH8Hmee8A8aEa-xwt737G_hM2SuFKraRWXKouCSP-aguKT5ZNBgHUZEbH0hcHXqAaZo2ist7S7cht-cwS52nIgEFi0hghC.jpg")
+    center/cover fixed;
   color: #000;
   text-align: center;
   overflow-x: hidden;
 }
+
 /* Header */
 header {
   position: fixed;
@@ -20,37 +23,44 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: rgba(0, 0, 0, .85);
+  background: rgba(0, 0, 0, 0.85);
   color: #fff;
   z-index: 1000;
 }
+
 nav {
   display: flex;
   gap: 20px;
   align-items: center;
 }
+
 nav a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
+
 nav a:hover,
 nav a.active {
   color: #ffcc00;
 }
+
 /* Sections */
 .section {
   padding: 140px 20px 40px;
   width: 100%;
 }
+
 .hidden {
   display: none !important;
 }
+
 .active {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 /* Home */
 #home {
   min-height: 75vh;
@@ -59,11 +69,13 @@ nav a.active {
   justify-content: center;
   align-items: center;
 }
+
 .hero-banner {
   color: #fff;
   text-shadow: 2px 2px 8px #000;
   margin-bottom: 40px;
 }
+
 /* Forms */
 .form-container,
 .form,
@@ -73,11 +85,13 @@ nav a.active {
   margin: 20px auto;
   padding: 30px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, .95);
+  background: rgba(255, 255, 255, 0.95);
 }
+
 .form {
   max-width: 420px;
 }
+
 .form input,
 .form textarea {
   width: 100%;
@@ -86,11 +100,13 @@ nav a.active {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 .form input:focus,
 .form textarea:focus {
   border-color: #ff6600;
   outline: none;
 }
+
 /* Buttons */
 button {
   padding: 12px 24px;
@@ -99,14 +115,17 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 button:hover {
   background: #e6b800;
 }
+
 .welcome-msg {
   margin-top: 15px;
   color: green;
   font-weight: bold;
 }
+
 /* Menu & Services */
 .menu,
 .services-grid {
@@ -114,13 +133,15 @@ button:hover {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
+
 .menu,
 .services-container {
   max-width: 1000px;
   margin: 20px auto;
 }
+
 .card {
-  background: rgba(0, 0, 0, .75);
+  background: rgba(0, 0, 0, 0.75);
   color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -128,50 +149,81 @@ button:hover {
 
 .services-container {
   padding: 40px 20px;
-  background: rgba(0, 0, 0, .65);
+  background: rgba(0, 0, 0, 0.65);
   border-radius: 12px;
 }
+
 .service-card {
   background: #fff;
   color: #333;
   padding: 30px 20px;
   border-radius: 8px;
 }
+
 .service-card:hover {
   transform: translateY(-5px);
 }
-/* About */
-.about-box p {
-  text-align: justify;
-  line-height: 1.7;
+
+/* About - SIMPLE & RESPONSIVE */
+.about-box {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
 }
+
+.about-box p {
+  text-align: left;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
 .brand-name {
   color: #ff6600;
   font-weight: bold;
 }
-/* Responsive */
-@media(max-width:768px) {
+/* Responsive Design */
+/* Tablet */
+@media (max-width: 768px) {
   header {
     flex-direction: column;
-    gap: 12px;
-    padding: 15px;
+    gap: 10px;
+    padding: 12px;
+    text-align: center;
   }
   nav {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
   }
   .section {
     padding-top: 180px;
   }
+  .about-box {
+    width: 95%;
+    padding: 20px;
+  }
 }
-@media(max-width:480px) {
+/* Mobile */
+@media (max-width: 480px) {
   header h1 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   nav a {
     font-size: 12px;
   }
-  .about-box,
+  .about-box {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .about-box p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
   .form-container,
   .services-container {
     padding: 20px 15px;
