@@ -9,7 +9,7 @@
 body {
   background:  linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)),url("photo-1534422298391-e4f8c172dddb.jpg")
     center/cover fixed;
-  color: #000;
+  color: white;
   text-align: center;
   overflow-x: hidden;
 }
