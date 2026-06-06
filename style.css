@@ -1,24 +1,17 @@
-/* ==========================================================================
-   1. RESET & BASE STYLES
-   ========================================================================== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
-
 body {
   background: url("wPrmHup34MZE2OR5D2X9_d3a7zD0C3liidhuwJaNfr-5j3r8Jd_om4NrS4V_U2LQ17mN2wDYGvGMtqUM8RpB0gzk1M5AlipfRbsH8Hmee8A8aEa-xwt737G_hM2SuFKraRWXKouCSP-aguKT5ZNBgHUZEbH0hcHXqAaZo2ist7S7cht-cwS52nIgEFi0hghC.jpg") center/cover fixed;
-  color: #000000;
+  color: #000;
   text-align: center;
-  overflow-x: hidden; /* RESPONSIVE FIX: Prevents accidental horizontal layout breaking on mobile */
-  width: 100%;
+  overflow-x: hidden;
 }
-
-/* ==========================================================================
-   2. NAVBAR STYLING (Fulfills: Flexbox & Aesthetic Navigation Condition)
-   ========================================================================== */
+/* Header */
 header {
   position: fixed;
   top: 0;
@@ -27,324 +20,160 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: rgba(0, 0, 0, 0.85);
-  color: white;
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
   z-index: 1000;
 }
-
-header h1 {
-  font-size: 1.5rem; /* RESPONSIVE FIX: Scale header text dynamically */
-}
-
 nav {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 }
-
 nav a {
-  font-size: 14px;
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.3s ease;
 }
-
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   color: #ffcc00;
 }
-
-/* ==========================================================================
-   3. SECTION MECHANICS (Fulfills: Smooth Page Transitions)
-   ========================================================================== */
+/* Sections */
 .section {
-  padding: 140px 20px 40px; /* RESPONSIVE FIX: Increased top spacing to give stacked mobile navbar breathing room */
-  text-align: center;
+  padding: 140px 20px 40px;
   width: 100%;
 }
-
 .hidden {
   display: none !important;
 }
-
 .active {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-/* ==========================================================================
-   4. COMPONENT LAYOUTS & CONTAINERS
-   ========================================================================== */
-
-/* HOME VIEW HERO */
+/* Home */
 #home {
-  min-height: 75vh; /* RESPONSIVE FIX: Changed height to min-height to prevent text cropping */
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
-
 .hero-banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
-  color: #ffffff;
+  color: #fff;
+  text-shadow: 2px 2px 8px #000;
   margin-bottom: 40px;
 }
-
-/* THE CONTAINER BOX (Fixes visibility from Screenshot 2026-06-06 072027.jpg) */
-.form-container, .form {
+/* Forms */
+.form-container,
+.form,
+.about-box {
   width: 100%;
-  max-width: 420px;
+  max-width: 700px;
   margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.95); /* High contrast light background box */
-  padding: 30px 25px;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  color: #333333;
+  background: rgba(255, 255, 255, .95);
 }
-
-.form-container h2 {
-  margin-bottom: 20px;
-  color: #111111;
-  font-size: 1.6rem;
+.form {
+  max-width: 420px;
 }
-
-/* RESPONSIVE FIX: Ensures inputs stretch perfectly across containers contextually */
 .form input,
 .form textarea {
   width: 100%;
-  margin: 10px 0;
   padding: 12px;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
-  color: #333333;
-  background: #ffffff;
 }
-
-.form input:focus, .form textarea:focus {
+.form input:focus,
+.form textarea:focus {
   border-color: #ff6600;
   outline: none;
 }
-
-/* GLOBAL UI BUTTONS */
+/* Buttons */
 button {
   padding: 12px 24px;
   background: #ffcc00;
-  color: #000000;
   border: none;
-  font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease, transform 0.1s ease;
 }
-
 button:hover {
   background: #e6b800;
 }
-
-button:active {
-  transform: scale(0.98);
-}
-
 .welcome-msg {
   margin-top: 15px;
-  color: #27ae60;
+  color: green;
   font-weight: bold;
-  font-size: 0.95rem;
-  word-break: break-all;
 }
-
-/* MENU LAYOUT (Grid Technique) */
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 1000px;
-  padding: 0 10px;
-}
-
-.card {
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* ==========================================================================
-   5. PREMIUM SERVICES SECTION (Triggers On Scroll)
-   ========================================================================== */
-.services-container {
-  width: 100%;
-  max-width: 1000px;
-  margin-top: 40px;
-  padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.65); /* Translucent shield to contrast background map/images */
-  border-radius: 12px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-.services-container h2 {
-  color: #ffcc00;
-  margin-bottom: 30px;
-  font-size: 2rem;
-}
-
+/* Menu & Services */
+.menu,
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  width: 100%;
+  gap: 20px;
+}
+.menu,
+.services-container {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+.card {
+  background: rgba(0, 0, 0, .75);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
 }
 
+.services-container {
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, .65);
+  border-radius: 12px;
+}
 .service-card {
-  background: rgba(255, 255, 255, 0.95);
-  color: #333333;
+  background: #fff;
+  color: #333;
   padding: 30px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
 .service-card:hover {
   transform: translateY(-5px);
 }
-
-.service-card i {
-  font-size: 2.5rem;
-  color: #ff6600;
-  margin-bottom: 15px;
-}
-
-.service-card h3 {
-  margin-bottom: 10px;
-  color: #111111;
-}
-
-.service-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  text-align: justify; /* Fulfills proper system alignment rules */
-  width: 100%;
-}
-
-/* ==========================================================================
-   6. ABOUT SECTION (Fulfills: Proper Alignment & Justified Text)
-   ========================================================================== */
-#about {
-  width: 100%;
-}
-
-.about-box {
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #333333;
-}
-
-#about h2 {
-  margin-bottom: 20px;
-  color: #111;
-}
-
+/* About */
 .about-box p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #333;
-  margin-bottom: 15px;
   text-align: justify;
-  width: 100%;
+  line-height: 1.7;
 }
-
-.about-box h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  color: #111;
-}
-
 .brand-name {
-  font-weight: bold;
   color: #ff6600;
+  font-weight: bold;
 }
-
-/* ==========================================================================
-   7. ADVANCED MEDIA QUERY BREAKPOINTS
-   ========================================================================== */
-html {
-  font-size: 16px;
-}
-
-/* Desktop/Tablet Transition */
-@media (max-width: 1024px) {
-  html {
-    font-size: 15px;
-  }
-}
-
-/* Mobile Screens */
-@media (max-width: 768px) {
+/* Responsive */
+@media(max-width:768px) {
   header {
     flex-direction: column;
     gap: 12px;
     padding: 15px;
-    position: absolute; /* Allows smoother scrolling behavior on low-end mobile configurations */
   }
-
   nav {
-    flex-wrap: wrap; /* Enables multi-line wrapping for menu items if space is limited */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    width: 100%;
   }
-
-  /* Pushes content downward so the larger stacked mobile navigation doesn't block out titles */
   .section {
     padding-top: 180px;
   }
 }
-
-/* Small Mobile Screens (<480px) */
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
-
+@media(max-width:480px) {
   header h1 {
     font-size: 1.3rem;
   }
-
   nav a {
     font-size: 12px;
-    gap: 4px;
   }
-
-  .about-box, .form-container, .services-container {
-    padding: 20px 15px; /* Reduces extreme margins for smaller screen spaces */
+  .about-box,
+  .form-container,
+  .services-container {
+    padding: 20px 15px;
   }
 }
