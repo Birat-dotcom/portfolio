@@ -114,12 +114,6 @@ function sendMessage() {
         alert("Error: Please enter a valid email address.");
         return;
     }
-     if (digitsOnly.length === 10) {
-        console.log("Valid phone number! The digits are: " + digitsOnly);
-    } else {
-        console.log("Invalid format. Please enter exactly 10 digits.");
-    }
-
     alert(`Thank you, ${name}! Your message has been received.`);
 
     // Clear inputs
