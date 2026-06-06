@@ -33,9 +33,9 @@ function sendMessage() {
     let email = document.getElementById("cemail").value;
     let msg = document.getElementById("cmsg").value;
     let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(email)) {
+    if (!emailPattern.test(cemail)) {
         alert("Invalid email format");
-        return false;
+        return;
     }
     if (name == "" || email == "" || msg == "") {
         alert("Fill all fields");
@@ -53,7 +53,7 @@ function login() {
     // 1. empty check first
     if (email == "" || pass == "") {
         alert("Fill all fields");
-        return false;
+        return;
     }
     // 2. email check
     if (!emailPattern.test(email)) {
