@@ -35,7 +35,7 @@ function sendMessage() {
     let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (!emailPattern.test(email)) {
         alert("Invalid email format");
-        return;
+        return false;
     }
     if (name == "" || email == "" || msg == "") {
         alert("Fill all fields");
@@ -53,7 +53,7 @@ function login() {
     // 1. empty check first
     if (email == "" || pass == "") {
         alert("Fill all fields");
-        return;
+        return false;
     }
     // 2. email check
     if (!emailPattern.test(email)) {
