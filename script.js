@@ -99,12 +99,13 @@ function sendMessage() {
     const name = document.getElementById("cname").value.trim();
     const email = document.getElementById("cemail").value.trim();
     const msg = document.getElementById("cmsg").value.trim();
+     const phone = document.getElementById("cphone").value.trim();
   
 
 
     // Validation 1: Check for empty text fields
-    if (!name || !email || !msg ) {
-        alert("Error: All contact fields (Name, Email, Message,) are required.");
+    if (!name || !email || !msg || !phone) {
+        alert("Error: All contact fields (Name, Email, Message,Phone) are required.");
         return;
     }
 
@@ -112,6 +113,11 @@ function sendMessage() {
     if (!email.includes("@") || !email.includes(".")) {
         alert("Error: Please enter a valid email address.");
         return;
+    }
+     if (digitsOnly.length === 10) {
+        console.log("Valid phone number! The digits are: " + digitsOnly);
+    } else {
+        console.log("Invalid format. Please enter exactly 10 digits.");
     }
 
     alert(`Thank you, ${name}! Your message has been received.`);
