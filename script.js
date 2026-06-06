@@ -99,12 +99,12 @@ function sendMessage() {
     const name = document.getElementById("cname").value.trim();
     const email = document.getElementById("cemail").value.trim();
     const msg = document.getElementById("cmsg").value.trim();
-    const msg = document.getElementById("cphone").value.trim();
+  
 
 
     // Validation 1: Check for empty text fields
-    if (!name || !email || !msg ||! Phone Number) {
-        alert("Error: All contact fields (Name, Email, Message,Phone Number) are required.");
+    if (!name || !email || !msg ) {
+        alert("Error: All contact fields (Name, Email, Message,) are required.");
         return;
     }
 
