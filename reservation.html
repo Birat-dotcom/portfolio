@@ -35,9 +35,10 @@
 
         <input type="text" id="rname" placeholder="Enter your full name">
 
-        <input type="date" id="rdate" placeholder="Enter Full Date">
-
-        <input type="time" id="rtime" placeholder="Enter Full Time">
+         <input type="text" id="rdate" placeholder="Select reservation date" onfocus="(this.type='date')"
+          onblur="(this.value ? this.type='date' : this.type='text')">
+        <input type="text" id="rtime" placeholder="Select reservation time" onfocus="(this.type='time')"
+          onblur="(this.value ? this.type='time' : this.type='text')">
 
         <button onclick="bookTable()">
           <i class="fas fa-check-circle"></i> Book Table
