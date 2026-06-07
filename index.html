@@ -5,65 +5,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MealMatrix - Home</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <header>
-    <a href="index.html" class="logo-container">
-      <i class="fas fa-utensils logo-icon"></i>
-      <h1 class="logo-text">Meal Matrix</h1>
-    </a>
-    
-    <nav>
-      <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-      <a href="menu.html"><i class="fas fa-utensils"></i> Menu</a>
-      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-    </nav>
-  </header>
+<header>
+  <a href="index.html" class="logo-container">
+    <i class="fas fa-utensils logo-icon"></i>
+    <h1 class="logo-text">Meal Matrix</h1>
+  </a>
 
-  <main>
-    
-    <section id="home" class="section active">
-      <div class="hero-banner">
-        <h2>Welcome to MealMatrix 🍽️</h2>
-        <p>Your hunger ends here</p>
-        <a href="#services"><button>Order Now</button></a>
-      </div>
-    </section>
+  <nav>
+    <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="menu.html"><i class="fas fa-utensils"></i> Menu</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+</header>
 
-    <section id="services" class="section active">
-      <h2>Our Services</h2>
+<main>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="section active">
+
+    <div class="hero-banner">
+      <h2>Welcome to MealMatrix 🍽️</h2>
+      <p>Your hunger ends here</p>
+
+      <!-- FIXED BUTTON -->
+      <button onclick="goToMenu()">Order Now</button>
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section active">
+
+    <div class="container">
+      <p class="section-subtitle">EXPERIENCE THE BEST</p>
+      <h2 class="section-title">Our Services</h2>
+
       <div class="services-container">
 
-        <div class="service-card">
-          <h3>Online Ordering</h3>
-          <p>Order your favorite meals anytime.</p>
+        <div class="premium-card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Online Ordering</h3>
+            <p>Browse menu and order easily from anywhere.</p>
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>Fast Delivery</h3>
-          <p>Quick and reliable delivery service.</p>
+        <div class="premium-card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-motorcycle"></i>
+            </div>
+            <h3>Fast Delivery</h3>
+            <p>Hot food delivered quickly to your doorstep.</p>
+          </div>
         </div>
 
-        <div class="service-card">
-          <h3>Table Booking</h3>
-          <p>Reserve your table in advance.</p>
+        <div class="premium-card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Table Booking</h3>
+            <p>Reserve your table instantly with ease.</p>
+          </div>
         </div>
 
       </div>
-    </section>
+    </div>
 
-  </main>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 MealMatrix</p>
-  </footer>
+</main>
 
-  <script src="script.js"></script>
+<footer>
+  <p>&copy; 2026 MealMatrix</p>
+</footer>
+<!-- SCRIPT -->
+<script src="script.js"></script>
+<div id="toast"></div>
 </body>
-
 </html>
