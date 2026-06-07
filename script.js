@@ -2,18 +2,20 @@
 window.onload = function () {
     showCart();
 };
-/* ---------- CART ---------- */
+
+/* ---------- CART / MENU ---------- */
 let total = 0;
+
 function addToCart(name, price) {
-    total = total + price;
-    alert(name + " added");
+    console.log("Price item:", price);
+    console.log("Data type:", typeof price);
+    total += Number(price);
+
+    // User feedback
+    alert(name + " added to cart!");
+    
+    
     showCart();
-}
-function showCart() {
-    let t = document.getElementById("orderTotal");
-    if (t) {
-        t.innerText = "Total: Rs " + total;
-    }
 }
 /* ---------- BOOK TABLE ---------- */
 function bookTable() {
@@ -25,46 +27,61 @@ function bookTable() {
         alert("Fill all fields");
         return;
     }
+
     alert("Table booked for " + name);
+
+    document.getElementById("rname").value = "";
+    document.getElementById("rdate").value = "";
+    document.getElementById("rtime").value = "";
 }
-/* ---------- CONTACT ---------- */
+
+/* ---------- CONTACT---------- */
 function sendMessage() {
-    let name = document.getElementById("cname").value;
-    let email = document.getElementById("cemail").value;
-    let msg = document.getElementById("cmsg").value;
-    let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(cemail)) {
-        alert("Invalid email format");
-        return;
-    }
+    // Added .trim() to prevent bypasses using empty spaces
+    let name = document.getElementById("cname").value.trim();
+    let email = document.getElementById("cemail").value.trim();
+    let msg = document.getElementById("cmsg").value.trim();
+
+    let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
     if (name == "" || email == "" || msg == "") {
         alert("Fill all fields");
         return;
     }
-    alert("Message sent");
-}
-/* ---------- LOGIN ---------- */
-function login() {
-    let email = document.getElementById("email").value;
-    let pass = document.getElementById("password").value;
-    // patterns (FIXED NAMES)
-    let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    let passPattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/;
-    // 1. empty check first
-    if (email == "" || pass == "") {
-        alert("Fill all fields");
-        return;
-    }
-    // 2. email check
+
     if (!emailPattern.test(email)) {
         alert("Invalid email format");
         return;
     }
-    // 3. password check
+
+    alert("Message sent successfully!");
+}
+
+/* ---------- LOGIN ---------- */
+function login() {
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+
+    let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    let passPattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/;
+
+    if (email == "" || pass == "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Invalid email format");
+        return;
+    }
+
     if (!passPattern.test(pass)) {
         alert("Password must be 6+ chars with letters + numbers");
         return;
     }
 
     alert("Login successful");
+
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
 }
