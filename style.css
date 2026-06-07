@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 /* Reset */
 * {
   margin: 0;
@@ -7,7 +10,7 @@
 }
 
 body {
-  background:  linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)),url("photo-1534422298391-e4f8c172dddb.jpg")
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)), url("photo-1534422298391-e4f8c172dddb.jpg")
     center/cover fixed;
   color: white;
   text-align: center;
@@ -134,8 +137,7 @@ button:hover {
   gap: 20px;
 }
 
-.menu,
-.services-container {
+.menu {
   max-width: 1000px;
   margin: 20px auto;
 }
@@ -147,10 +149,19 @@ button:hover {
   border-radius: 10px;
 }
 
+/* --- UPDATED SERVICES CONTAINER FOR COLUMNS --- */
 .services-container {
+  max-width: 1000px;
+  margin: 20px auto;
   padding: 40px 20px;
   background: rgba(0, 0, 0, 0.65);
   border-radius: 12px;
+  
+  display: flex;            /* Triggers flexbox layout orientation */
+  flex-direction: row;      /* Organizes inner cards into side-by-side columns */
+  justify-content: center;  /* Centers cards horizontally inside the background wrapper */
+  gap: 20px;                /* Keeps clean spaces between cards */
+  flex-wrap: wrap;          /* Automatically wraps columns into lines when screen shrinks */
 }
 
 .service-card {
@@ -158,6 +169,11 @@ button:hover {
   color: #333;
   padding: 30px 20px;
   border-radius: 8px;
+  transition: transform 0.2s ease;
+  
+  flex: 1;                  /* Forces elements to inherit perfectly balanced identical widths */
+  min-width: 250px;         /* Keeps them looking clean without squishing on small devices */
+  max-width: 310px;         /* Restricts excessive horizontal stretching on giant monitors */
 }
 
 .service-card:hover {
@@ -185,6 +201,7 @@ button:hover {
   color: #ff6600;
   font-weight: bold;
 }
+
 /* Responsive Design */
 /* Tablet */
 @media (max-width: 768px) {
