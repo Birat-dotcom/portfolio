@@ -10,14 +10,13 @@ html {
 }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)), url("photo-1534422298391-e4f8c172dddb.jpg")
-    center/cover fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)), url("photo-1534422298391-e4f8c172dddb.jpg") center/cover fixed;
   color: white;
   text-align: center;
   overflow-x: hidden;
 }
 
-/* Header */
+/* Header (Glass effect removed, changed back to solid dark panel) */
 header {
   position: fixed;
   top: 0;
@@ -26,7 +25,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.85); 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);             
   color: #fff;
   z-index: 1000;
 }
@@ -41,6 +41,7 @@ nav a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
 nav a:hover,
@@ -59,9 +60,7 @@ nav a.active {
 }
 
 .active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block; 
 }
 
 /* Home */
@@ -81,8 +80,7 @@ nav a.active {
 
 /* Forms */
 .form-container,
-.form,
-.about-box {
+.form {
   width: 100%;
   max-width: 700px;
   margin: 20px auto;
@@ -129,17 +127,14 @@ button:hover {
   font-weight: bold;
 }
 
-/* Menu & Services */
-.menu,
-.services-grid {
+/* Menu Shared Configuration */
+.menu {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-}
-
-.menu {
-  max-width: 1000px;
-  margin: 20px auto;
 }
 
 .card {
@@ -149,51 +144,43 @@ button:hover {
   border-radius: 10px;
 }
 
-/* --- FIXED SERVICES LAYOUT CORRECTION --- */
-.services-container {
+/* --- SERVICES & ABOUT IDENTICAL GRID SYSTEM --- */
+.services-container,
+.about-container {
   width: 100%;
   max-width: 1000px;
   margin: 20px auto;
   padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.65); 
   border-radius: 12px;
   
-  /* Use !important to break away from the parent ".active" column restriction */
-  display: flex !important;            
-  flex-direction: row !important;      
-  justify-content: center;  
-  gap: 24px;                
-  flex-wrap: wrap;          
+  display: grid !important; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 25px;
+  justify-items: center;
 }
 
-.service-card {
-  background: #fff;
-  color: #333;
-  padding: 35px 20px;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
-  
-  /* Perfectly allocate widths across columns */
-  flex: 1;                  
-  min-width: 260px;         
-  max-width: 300px;         
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-}
-
-/* About - SIMPLE & RESPONSIVE */
+/* Identical Card Layouts for both Services and About Sections */
+.service-card,
 .about-box {
-  width: 90%;
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 25px;
-  background: #fff;
+  background: #fff; 
   color: #333;
+  padding: 35px 25px;
   border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+.service-card:hover,
+.about-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Identical clean typography settings for text boxes */
+.service-card p,
 .about-box p {
   text-align: left;
   line-height: 1.7;
@@ -205,7 +192,8 @@ button:hover {
   font-weight: bold;
 }
 
-/* Responsive Design */
+/* --- RESPONSIVE MEDIA BREAKPOINTS --- */
+
 /* Tablet */
 @media (max-width: 768px) {
   header {
@@ -213,39 +201,56 @@ button:hover {
     gap: 10px;
     padding: 12px;
     text-align: center;
+    background: rgba(0, 0, 0, 0.85); 
   }
+
   nav {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
   }
+
   .section {
     padding-top: 180px;
   }
-  .about-box {
-    width: 95%;
-    padding: 20px;
+
+  .services-container,
+  .about-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 30px 15px;
   }
 }
+
 /* Mobile */
 @media (max-width: 480px) {
   header h1 {
     font-size: 1.2rem;
   }
+
   nav a {
     font-size: 12px;
   }
-  .about-box {
-    width: 95%;
-    padding: 15px;
-  }
 
+  .service-card p,
   .about-box p {
     font-size: 14px;
     line-height: 1.6;
   }
+
   .form-container,
-  .services-container {
+  .services-container,
+  .about-container {
     padding: 20px 15px;
+  }
+
+  .services-container,
+  .about-container {
+    grid-template-columns: 1fr; 
+  }
+
+  .service-card,
+  .about-box {
+    max-width: 100%;
   }
 }
